@@ -1,7 +1,5 @@
 # Advent of Code
 
-------
-
 My solutions for the [Advent of Code](https://adventofcode.com) challenges.
 
 My primary approach to the puzzles is by using TDD. I'm using 
