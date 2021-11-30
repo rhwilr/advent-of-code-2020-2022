@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace Tests\Unit\AdventOfCode2020;
 
-use App\Solvers\AdventOfCode2020\Day8;
+use App\Solvers\AdventOfCode2020\Day7;
 use Tests\TestCase;
 
 class Day7Test extends TestCase
 {
     public function testSolvePartOneExample(): void
     {
-        $day = Day8::make()->setInput(<<<TXT
+        $day = Day7::make()->setInput(<<<TXT
 light red bags contain 1 bright white bag, 2 muted yellow bags.
 dark orange bags contain 3 bright white bags, 4 muted yellow bags.
 bright white bags contain 1 shiny gold bag.
@@ -27,14 +27,14 @@ TXT);
 
     public function testSolvePartOne(): void
     {
-        $day = Day8::make();
+        $day = Day7::make();
 
         $this->assertSame(302, $day->solvePartOne());
     }
 
     public function testSolvePartTwoExample(): void
     {
-        $day = Day8::make()->setInput(<<<TXT
+        $day = Day7::make()->setInput(<<<TXT
 shiny gold bags contain 2 dark red bags.
 dark red bags contain 2 dark orange bags.
 dark orange bags contain 2 dark yellow bags.
@@ -50,7 +50,7 @@ TXT
 
     public function testSolvePartTwo(): void
     {
-        $day = Day8::make();
+        $day = Day7::make();
 
         $this->assertSame(4165, $day->solvePartTwo());
     }
