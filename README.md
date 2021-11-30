@@ -1,5 +1,8 @@
 # Advent of Code
 
+![CI](https://github.com/rhwilr/adventOfCode/actions/workflows/ci.yml/badge.svg)
+
+
 My solutions for the [Advent of Code](https://adventofcode.com) challenges.
 
 My primary approach to the puzzles is by using TDD. I'm using 
