@@ -7,6 +7,7 @@ namespace App\Solvers\AdventOfCode2020;
 use App\DataStructures\Graph\Algorithms\Reachability;
 use App\DataStructures\Graph\Graph;
 use App\DataStructures\Graph\Vertex;
+use App\Solvers\AbstractSolver;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Config;

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Solvers\AdventOfCode2020;
 
 use AdventOfCode2020\Day3\MapObject;
+use App\Solvers\AbstractSolver;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 

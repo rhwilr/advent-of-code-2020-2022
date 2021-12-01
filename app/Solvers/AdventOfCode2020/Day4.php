@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Solvers\AdventOfCode2020;
 
+use App\Solvers\AbstractSolver;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;

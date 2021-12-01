@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Solvers\AdventOfCode2020;
 
+use App\Solvers\AbstractSolver;
 use Illuminate\Support\Str;
 use RuntimeException;
 

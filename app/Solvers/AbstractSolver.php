@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Solvers\AdventOfCode2020;
+namespace App\Solvers;
 
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
