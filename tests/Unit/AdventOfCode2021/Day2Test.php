@@ -7,43 +7,49 @@ namespace Tests\Unit\AdventOfCode2021;
 use App\Solvers\AdventOfCode2021\Day2;
 use Tests\TestCase;
 
-class DayTemplate extends TestCase
+class Day2Test extends TestCase
 {
     public function testSolvePartOneExample(): void
     {
-        $this->markTestSkipped();
         $day = Day2::make()->setInput(<<<TXT
-
+forward 5
+down 5
+forward 8
+up 3
+down 8
+forward 2
 TXT
         );
 
-        $this->assertSame(null, $day->solvePartOne());
+        $this->assertSame(150, $day->solvePartOne());
     }
 
     public function testSolvePartOne(): void
     {
-        $this->markTestSkipped();
         $day = Day2::make();
 
-        $this->assertSame(null, $day->solvePartOne());
+        $this->assertSame(1855814, $day->solvePartOne());
     }
 
     public function testSolvePartTwoExample(): void
     {
-        $this->markTestSkipped();
         $day = Day2::make()->setInput(<<<TXT
-
+forward 5
+down 5
+forward 8
+up 3
+down 8
+forward 2
 TXT
         );
 
-        $this->assertSame(null, $day->solvePartTwo());
+        $this->assertSame(900, $day->solvePartTwo());
     }
 
     public function testSolvePartTwo(): void
     {
-        $this->markTestSkipped();
         $day = Day2::make();
 
-        $this->assertSame(null, $day->solvePartTwo());
+        $this->assertSame(1845455714, $day->solvePartTwo());
     }
 }
