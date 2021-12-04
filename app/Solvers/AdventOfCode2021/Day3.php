@@ -7,14 +7,9 @@ namespace App\Solvers\AdventOfCode2021;
 use App\Solvers\AbstractSolver;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
-use RuntimeException;
 
 class Day3 extends AbstractSolver
 {
-    private int $position = 0;
-    private int $depth = 0;
-    private int $aim = 0;
-
     protected function partOne(string $input)
     {
         $lines = $this->parseInput($input);
