@@ -9,19 +9,26 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use RuntimeException;
 
-class Day6 extends AbstractSolver
+class Day7 extends AbstractSolver
 {
-    private const REPRODUCTION_TIMER = 6;
-    private const INIT_TIMER = 8;
-
     protected function partOne(string $input)
     {
-        return $this->simulateForDays($input, 80);
+        $crabs = $this->parseInput($input);
+
+        $optimum = $crabs->median();
+
+        return $crabs
+            ->map(fn ($position) => abs($position - $optimum))
+            ->sum();
     }
 
     protected function partTwo(string $input)
     {
-        return $this->simulateForDays($input, 256);
+        $crabs = $this->parseInput($input);
+
+        $median = $crabs->median();
+
+        return $this->optimizeGradientDecent($median, $crabs);
     }
 
     protected function parseInput(string $input): Collection
@@ -31,39 +38,46 @@ class Day6 extends AbstractSolver
             ->map(fn ($n) => intval($n));
     }
 
-    private function ageByOneDay(Collection $school)
+    private function optimizeGradientDecent(int $median, Collection $crabs)
     {
-        $fishReproducing = $school->shift();
+        $moveDirection = 1;
 
-        $school->put(self::REPRODUCTION_TIMER, $school->get(self::REPRODUCTION_TIMER, 0) + $fishReproducing);
-        $school->put(self::INIT_TIMER, $fishReproducing);
+        $best = $this->calculateFuel($crabs, $median);
+        $guess = $median + $moveDirection;
 
-        return $school;
-    }
+        $previousBest = null;
 
-    private function convertIntoAgeBuckets(Collection $fish)
-    {
-        $buckets = collect(range(0, self::INIT_TIMER));
+        // Do at least 5 iteration, then continue as long as we still find better values
+        while ($best !== $previousBest) {
+            $previousBest = $best;
 
-        return $buckets->map(function ($item, $key) use ($fish) {
-            return $fish->filter(fn ($n) => $n === $key)->count();
-        });
+            $fuel = $this->calculateFuel($crabs, $guess);
+
+            if ($fuel > $best) {
+                $moveDirection = $moveDirection * -1;
+            } else {
+                $best = $fuel;
+            }
+
+            $guess += $moveDirection;
+        }
+
+        return $best;
     }
 
     /**
-     * @param string $input
+     * @param Collection $crabs
+     * @param $guess
      * @return mixed
      */
-    protected function simulateForDays(string $input, int $days): mixed
+    private function calculateFuel(Collection $crabs, $guess): mixed
     {
-        $fish = $this->parseInput($input);
+        return $crabs
+            ->map(function ($position) use ($guess) {
+                $diff = abs($position - $guess);
 
-        $school = $this->convertIntoAgeBuckets($fish);
-
-        foreach (range(1, $days) as $day) {
-            $school = $this->ageByOneDay($school);
-        }
-
-        return $school->sum();
+                return $diff * (1 + $diff) / 2;
+            })
+            ->sum();
     }
 }

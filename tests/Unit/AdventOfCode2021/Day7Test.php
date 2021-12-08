@@ -4,46 +4,42 @@ declare(strict_types=1);
 
 namespace Tests\Unit\AdventOfCode2021;
 
-use App\Solvers\AdventOfCode2021\Day2;
+use App\Solvers\AdventOfCode2021\Day7;
 use Tests\TestCase;
 
-class DayTemplate extends TestCase
+class Day7Test extends TestCase
 {
     public function testSolvePartOneExample(): void
     {
-        $this->markTestSkipped();
-        $day = Day2::make()->setInput(<<<TXT
-
+        $day = Day7::make()->setInput(<<<TXT
+16,1,2,0,4,2,7,1,2,14
 TXT
         );
 
-        $this->assertSame(null, $day->solvePartOne());
+        $this->assertSame(37, $day->solvePartOne());
     }
 
     public function testSolvePartOne(): void
     {
-        $this->markTestSkipped();
-        $day = Day2::make();
+        $day = Day7::make();
 
-        $this->assertSame(null, $day->solvePartOne());
+        $this->assertSame(329389, $day->solvePartOne());
     }
 
     public function testSolvePartTwoExample(): void
     {
-        $this->markTestSkipped();
-        $day = Day2::make()->setInput(<<<TXT
-
+        $day = Day7::make()->setInput(<<<TXT
+16,1,2,0,4,2,7,1,2,14
 TXT
         );
 
-        $this->assertSame(null, $day->solvePartTwo());
+        $this->assertSame(168, $day->solvePartTwo());
     }
 
     public function testSolvePartTwo(): void
     {
-        $this->markTestSkipped();
-        $day = Day2::make();
+        $day = Day7::make();
 
-        $this->assertSame(null, $day->solvePartTwo());
+        $this->assertSame(86397080, $day->solvePartTwo());
     }
 }
