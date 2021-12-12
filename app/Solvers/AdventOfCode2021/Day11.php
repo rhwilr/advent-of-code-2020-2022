@@ -78,7 +78,7 @@ class Day11 extends AbstractSolver
                 }
             }
         }
-        
+
         // reset flashing octopus to 0
         foreach ($this->map as $y => $line) {
             foreach ($line as $x => $octopus) {
