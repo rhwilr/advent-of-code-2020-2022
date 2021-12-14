@@ -17,5 +17,8 @@ composer install
 ## Running tests
 
 ```shell
-php unit
+phpunit
+
+# Or running while solving the puzzle
+phpunit-watcher watch --filter='Tests\\Unit\\AdventOfCode2021\\Day1Test'
 ```

@@ -35,8 +35,7 @@ class Day3 extends AbstractSolver
             ->explode("\n")
             ->filter()
             ->map(fn($line) => Str::of($line)
-                ->split('//')
-                ->filter(fn ($n) => $n !== '')
+                ->split(1)
                 ->map(fn ($n) => intval($n)));
     }
 

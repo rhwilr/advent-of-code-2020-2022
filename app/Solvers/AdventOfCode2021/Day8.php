@@ -50,7 +50,7 @@ class Day8 extends AbstractSolver
 
         $trivialPatterns = $patterns->filter(fn ($n) => in_array(Str::of($n)->length(), [2,3,4,7]));
         foreach ($trivialPatterns as $pattern) {
-            $pattern = Str::of($pattern)->split('//')->filter();
+            $pattern = Str::of($pattern)->split(1);
 
             $this->decodeTrivialNumber($segment, $pattern);
         }
@@ -58,7 +58,7 @@ class Day8 extends AbstractSolver
         $multiPatterns = $patterns->filter(fn ($n) => !in_array(Str::of($n)->length(), [2,3,4,7]));
         while ($multiPatterns->isNotEmpty()) {
             $current = $multiPatterns->shift();
-            $pattern = Str::of($current)->split('//')->filter();
+            $pattern = Str::of($current)->split(1);
 
             $decoded = $this->decodeMultiNumber($segment, $pattern);
 
@@ -157,7 +157,7 @@ class Day8 extends AbstractSolver
     private function decodeNumbers(Collection $numbers, SevenSegment $segment): int
     {
         $number = $numbers->map(function ($n) use ($segment) {
-            $pattern = Str::of($n)->split('//')->filter()->sort();
+            $pattern = Str::of($n)->split(1)->sort();
 
             return $segment->decode($pattern);
         })->join('');
