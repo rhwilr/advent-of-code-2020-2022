@@ -45,8 +45,6 @@ TXT
 
     public function testSolvePartTwoExample(): void
     {
-        $this->markTestSkipped();
-
         $day = Day14::make()->setInput(<<<TXT
 NNCB
 
@@ -74,9 +72,8 @@ TXT
 
     public function testSolvePartTwo(): void
     {
-        $this->markTestSkipped();
         $day = Day14::make();
 
-        $this->assertSame(null, $day->solvePartTwo());
+        $this->assertSame(2827627697643, $day->solvePartTwo());
     }
 }

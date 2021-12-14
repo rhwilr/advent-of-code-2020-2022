@@ -13,9 +13,13 @@ class Day14 extends AbstractSolver
     private Collection $template;
     private Collection $insertions;
 
+    private Collection $pairs;
+    private Collection $counts;
+
     protected function partOne(string $input)
     {
         return $this->parseInput($input)
+            ->prepare()
             ->insertionSteps(10)
             ->calculateScore();
     }
@@ -23,7 +27,8 @@ class Day14 extends AbstractSolver
     protected function partTwo(string $input)
     {
         return $this->parseInput($input)
-            ->insertionSteps(10)
+            ->prepare()
+            ->insertionSteps(40)
             ->calculateScore();
     }
 
@@ -58,27 +63,43 @@ class Day14 extends AbstractSolver
 
     private function insertionStep()
     {
-        $lastElement = $this->template->last();
+        $nextPairs = collect();
 
-        $this->template = $this->template->sliding(2)
-            ->map(function (Collection $pair) {
-                // Is it possible that there is no insertion?
-                $insert = $this->insertions->get($pair->join(''));
+        $this->pairs->each(function ($count, $pair) use ($nextPairs) {
+            $insert = $this->insertions->get($pair);
+            $letters = Str::of($pair)->split(1);
 
-                return [$pair->first(), $insert];
-            })
-            ->flatten()
-            ->push($lastElement);
+            $this->counts->put($insert, $this->counts->get($insert, 0) + $count);
+
+            $p1 = $letters->first() . $insert;
+            $p2 = $insert . $letters->last();
+
+            $nextPairs->put($p1, $nextPairs->get($p1, 0) + $count);
+            $nextPairs->put($p2, $nextPairs->get($p2, 0) + $count);
+        });
+
+        $this->pairs = $nextPairs;
 
         return $this;
     }
 
     public function calculateScore()
     {
-        $counts = $this->template
-            ->countBy()
+        $counts = $this->counts
             ->sort();
 
         return $counts->last() - $counts->first();
+    }
+
+    private function prepare()
+    {
+        $this->pairs = $this->template
+            ->sliding(2)
+            ->map(fn ($pair) => $pair->join(''))
+            ->countBy();
+
+        $this->counts = $this->template->countBy();
+
+        return $this;
     }
 }
