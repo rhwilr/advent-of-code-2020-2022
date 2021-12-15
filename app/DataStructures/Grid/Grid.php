@@ -88,7 +88,13 @@ class Grid
             return null;
         }
 
-        return $this->grid[$y][$x];
+        $row = $this->grid[$y] ?? null;
+
+        if (is_null($row)) {
+            return null;
+        }
+
+        return $row[$x] ?? null;
     }
 
     public function set(int $x, int $y, int $value)
