@@ -70,7 +70,6 @@ class Day13 extends AbstractSolver
 
     private function buildMap()
     {
-
         $maxX = $this->points->map(fn ($n) => $n[0])
             ->max();
         $maxY = $this->points->map(fn ($n) => $n[1])
