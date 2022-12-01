@@ -30,6 +30,8 @@ TXT
 
     public function testSolvePartOne(): void
     {
+        $this->markTestSkipped();
+
         $day = Day15::make();
 
         $this->assertSame(null, $day->solvePartOne());
