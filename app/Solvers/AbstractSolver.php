@@ -14,13 +14,11 @@ abstract class AbstractSolver
     private int $day;
 
     private ?string $debugInput = null;
-    private string $input;
     private Collection $parameters;
 
     public function __construct()
     {
         $this->setDateYear();
-        $this->loadInput();
 
         $this->parameters = collect();
     }
@@ -46,7 +44,7 @@ abstract class AbstractSolver
 
     public function getInput(): string
     {
-        return $this->debugInput ?? $this->input;
+        return $this->debugInput ?? $this->loadInput();
     }
 
     public function getParameter(string $key, $default)
@@ -77,7 +75,7 @@ abstract class AbstractSolver
             ->matchAll('/AdventOfCode.*\\\\Day(.*)/')->first();
     }
 
-    private function loadInput(): void
+    private function loadInput(): string
     {
         $path = resource_path(sprintf('%s/day%s/input.txt', $this->year, $this->day));
 
@@ -85,6 +83,6 @@ abstract class AbstractSolver
             throw new RuntimeException(sprintf('Input file not readable: %s', $path));
         }
 
-        $this->input = file_get_contents($path);
+        return file_get_contents($path);
     }
 }
