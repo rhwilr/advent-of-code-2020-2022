@@ -7,8 +7,6 @@ namespace App\Solvers\AdventOfCode2022;
 use App\Solvers\AbstractSolver;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
-use PhpParser\Builder\Class_;
-use RuntimeException;
 
 enum Symbols: int {
     case Rock = 1;
