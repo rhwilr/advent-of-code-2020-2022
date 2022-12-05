@@ -13,19 +13,28 @@ abstract class AbstractSolver
     private int $year;
     private int $day;
 
+    private bool $loadExample = false;
     private ?string $debugInput = null;
     private Collection $parameters;
 
-    public function __construct()
+    public function __construct($loadExample = false)
     {
         $this->setDateYear();
 
         $this->parameters = collect();
+
+        $this->loadExample = $loadExample;
     }
 
     public static function make(): static
     {
-        return new static;
+        return new static();
+    }
+
+
+    public static function makeExample(): static
+    {
+        return new static(loadExample: true);
     }
 
     public function setInput(string $debugInput): static
@@ -77,7 +86,9 @@ abstract class AbstractSolver
 
     private function loadInput(): string
     {
-        $path = resource_path(sprintf('%s/day%s/input.txt', $this->year, $this->day));
+        $inputFileName = $this->loadExample ? 'example.txt' : 'input.txt';
+
+        $path = resource_path(sprintf('%s/day%s/%s', $this->year, $this->day, $inputFileName));
 
         if (!is_readable($path)) {
             throw new RuntimeException(sprintf('Input file not readable: %s', $path));
