@@ -20,5 +20,5 @@ composer install
 phpunit
 
 # Or running while solving the puzzle
-phpunit-watcher watch --filter='Tests\\Unit\\AdventOfCode2021\\Day1Test'
+vendor/bin/phpunit-watcher watch --filter='Tests\\Unit\\AdventOfCode2022\\Day6Test' --stop-on-fail
 ```

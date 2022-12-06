@@ -59,7 +59,7 @@ class Stacks {
     }
 }
 
-class Day4 extends AbstractSolver
+class Day5 extends AbstractSolver
 {
     private Stacks $stacks;
 
