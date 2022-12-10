@@ -13,11 +13,11 @@ abstract class AbstractSolver
     private int $year;
     private int $day;
 
-    private bool $loadExample = false;
+    private ?string $loadExample = null;
     private ?string $debugInput = null;
     private Collection $parameters;
 
-    public function __construct($loadExample = false)
+    public function __construct(string $loadExample = null)
     {
         $this->setDateYear();
 
@@ -32,9 +32,13 @@ abstract class AbstractSolver
     }
 
 
-    public static function makeExample(): static
+    public static function makeExample(int $exampleNumber = null): static
     {
-        return new static(loadExample: true);
+        if ($exampleNumber) {
+            return new static(loadExample: "example$exampleNumber.txt");
+        }
+
+        return new static(loadExample: "example.txt");
     }
 
     public function setInput(string $debugInput): static
@@ -86,7 +90,7 @@ abstract class AbstractSolver
 
     private function loadInput(): string
     {
-        $inputFileName = $this->loadExample ? 'example.txt' : 'input.txt';
+        $inputFileName = $this->loadExample ?? 'input.txt';
 
         $path = resource_path(sprintf('%s/day%s/%s', $this->year, $this->day, $inputFileName));
 
